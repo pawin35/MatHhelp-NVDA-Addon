@@ -1,0 +1,216 @@
+# This table contains braille codes and rules for Thai language
+# Copyright (C) 2016 Pawin Piemthai
+# This file is part of liblouis.
+# liblouis is free software: you can redistribute it and/or modify it
+# under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# liblouis is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+# You should have received a copy of the GNU Lesser General Public
+# License along with liblouis. If not, see
+# <http://www.gnu.org/licenses/>.
+include braille-patterns.cti
+include chardefs.cti
+
+ #Single cell Consonants
+ letter \x0E01	1245	#ko kai
+ letter \x0E02	13	#kho khai
+ letter \x0E04	136	#kho khwai
+ letter \x0E07	12456	#ngo ngu
+ letter \x0E08	245	#cho chan
+ letter \x0E09	34	#cho ching
+ letter \x0E0A	346	#cho chang
+ letter \x0E0B	2346	#so so
+letter \x0E14	145	#do dek
+letter \x0E15	1256	#to tao
+letter \x0E16	2345	#tho thung
+letter \x0E17	23456	#tho thahan
+letter \x0E19	1345	#no nu
+letter \x0E1A	1236	#bo baimai
+letter \x0E1B	12346	#po pla
+letter \x0E1C	1234	#pho phueng
+letter \x0E1D	1346	#fo fa
+letter \x0E1E	1456	#pho phan
+letter \x0E1F	1246	#fo fan
+letter \x0E21	134	#mo ma
+letter \x0E22	13456	#yo yak
+letter \x0E23	1235	#ro ruea
+letter \x0E25	123	#lo ling
+letter \x0E27	2456	#wo waen
+letter \x0E2A	234	#so suea
+letter \x0E2B	125	#ho hip
+letter \x0E2D	135	#o ang
+letter \x0E2E	123456	#ho nok-huk
+
+#Single cell vowels
+letter \x0E30	1	#Wisanchani 
+letter \x0E31	345	#Mai han a-kat
+letter \x0E32	16	#Lak khang
+letter \x0E34	12	#Phinthu i
+letter \x0E35	23	#Fon thong
+letter \x0E36	246	#Fan nu
+letter \x0E37	26	#Nikkhahit
+letter \x0E38	14	#Tin yiat
+letter \x0E39	25	#Tin khu
+letter \x0E40	124	#Mai na
+letter \x0E41	126	#Sara ae
+letter \x0E42	24	#Mai o
+letter \x0E33	1356	#Sara am
+letter \x0E44	156	#Mai malai
+letter \x0E47	3	#Mai tai khu
+
+#Single cell tonal marks
+letter \x0E48	35	#mai ek
+letter \x0E49	256	#mai tho
+letter \x0E4A	2356	#mai tri
+letter \x0E4B	236	#mai chattawa
+letter \x0E4C	356	#Thanthakhat 
+
+
+#Double cell consonants
+letter \x0E03	6-13	#kho khuat
+letter \x0E05	36-136	#kho khon
+letter \x0E06	6-136	#kho ra-khang
+letter \x0E0C	6-346	#cho ka choe
+letter \x0E0D	6-13456	#yo ying
+letter \x0E0E	6-145	#do cha-da
+letter \x0E0F	6-1256	#to pa-tak
+letter \x0E10	6-2345	#tho than
+letter \x0E11	6-23456	#tho montho
+letter \x0E12	36-23456	#tho phu-thao
+letter \x0E13	6-1345	#no nen
+letter \x0E18	356-23456	#tho thong
+letter \x0E20	6-1456	#pho sam-phao
+letter \x0E28	6-234	#so sala
+letter \x0E29	36-234	#so rue-si
+letter \x0E2C	6-123	#lo chu-la
+letter \x0E24	1235-2	#Tua rue
+letter \x0E26	123-2	#Tua lue
+
+
+#Double cell vowels
+letter \x0E43	156-2	Mai muan
+
+#sign
+sign ,	6	#Comma
+sign -	36	#Dash
+sign \x0E46	2	#Mai yamok
+
+#Define character class
+#Class containing all consonants in Thai language
+class TCON กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮ
+#Class containing all consonants except or ang (Use with context)
+class EXOR กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬฮ
+#Class containing all consonants except Yo yuk (use with context)
+class EXYO กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมรลวศษสหฬอฮ
+#Class containing tonal marks
+class TONE \x0E48\x0E49\x0E4A\x0E4B
+class UPCR ขฃฉถฐผฝศษสห
+class MDCR กจฎฏดตบปอ
+class DNCR คฅฆงชซฌญฑฒณทธนพฟภมยรลวฬฮ
+class COMCR รลว
+
+class EXCOM กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยศษสหฬอฮ
+class PRELET ,-\x0E4C
+
+#special exc4eption
+always เหล้า	125-123-235-256
+
+#Handle  each possible cases of Sara ua + tonal marks
+	context ["\x0E31\x0E27"]	@15
+context ["\x0E31\x0E48\x0E27"]	@15-35
+context ["\x0E31\x0E49\x0E27"]	@15-256
+context ["\x0E31\x0E4A\x0E27"]	@15-2356
+context ["\x0E31\x0E4B\x0E27"]	@15-236
+
+#handle each possible cases of Sara am + tonal marks
+context ["\x0E48\x0E33"]	@1356-35
+context ["\x0E49\x0E33"]	@1356-256
+context ["\x0E4A\x0E33"]	@1356-2356
+context ["\x0E4B\x0E33"]	@1356-236
+
+
+#Mark unwanted A
+context "เ"%EXOR1-2["\x0E2D"]	@146
+context "เ"%EXOR1-2["\x0E2D"]	@146
+context "เ"%EXOR1-2["\x0E48\x0E2D"]	@146-35
+context "เ"%EXOR1-2["\x0E49\x0E2D"]	@146-256
+context "เ"%EXOR1-2["\x0E4A\x0E2D"]	@146-2356
+context "เ"%EXOR1-2["\x0E4B\x0E2D"]	@146-236
+
+context "เ"%TCON1-2["\x0E37\x0E2D"]	@12345
+context "เ"%TCON1-2["\x0E37\x0E48\x0E2D"]	@12345-35
+context "เ"%TCON1-2["\x0E37\x0E49\x0E2D"]	@12345-256
+context "เ"%TCON1-2["\x0E37\x0E4A\x0E2D"]	@12345-2356
+context "เ"%TCON1-2["\x0E37\x0E4B\x0E2D"]	@12345-236
+
+context "เ"%EXYO1-2["\x0E35\x0E22"]	@12356
+context "เ"%EXYO1-2["\x0E35\x0E48\x0E22"]	@12356-35
+context "เ"%EXYO1-2["\x0E35\x0E49\x0E22"]	@12356-256
+context "เ"%EXYO1-2["\x0E35\x0E4A\x0E22"]	@12356-2356
+context "เ"%EXYO1-2["\x0E35\x0E4B\x0E22"]	@12356-236
+
+context "เ"%TCON1-2["\x0E34"]	@146
+context "เ"%TCON1-2["\x0E34\x0E48"]	@146-35
+context "เ"%TCON1-2["\x0E34\x0E49"]	@146-256
+context "เ"%TCON1-2["\x0E34\x0E4A"]	@146-2356
+context "เ"%TCON1-2["\x0E34\x0E4B"]	@146-236
+
+
+context "เ"%TCON1-2["าะ"]	@135-1
+context "เ"%TCON1-2["\x0E48าะ"]	@135-1-35
+context "เ"%TCON1-2["\x0E49าะ"]	@135-1-256
+context "เ"%TCON1-2["\x0E4Aาะ"]	@135-1-2356
+context "เ"%TCON1-2["\x0E4Bาะ"]	@135-1-236
+
+context "โ"%TCON["ะ"]	@24-1
+context "โ"%TCON["\x0E48ะ"]	@24-1-35
+context "โ"%TCON["\x0E49ะ"]	@24-1-256
+context "โ"%TCON["\x0E4Aะ"]	@24-1-2356
+context "โ"%TCON["\x0E4Bะ"]	@24-1-236
+
+context "โ"%UPCR%MDCR["ะ"]	@24-1
+context "โ"%UPCR%MDCR["\x0E48ะ"]	@24-1-35
+context "โ"%UPCR%MDCR["\x0E49ะ"]	@24-1-256
+context "โ"%UPCR%MDCR["\x0E4Aะ"]	@24-1-2356
+context "โ"%UPCR%MDCR["\x0E4Bะ"]	@24-1-236
+
+context "โ"%UPCR%DNCR["ะ"]	@24-1
+context "โ"%UPCR%DNCR["\x0E48ะ"]	@24-1-35
+context "โ"%UPCR%DNCR["\x0E49ะ"]	@24-1-256
+context "โ"%UPCR%DNCR["\x0E4Aะ"]	@24-1-2356
+context "โ"%UPCR%DNCR["\x0E4Bะ"]	@24-1-236
+
+context "เ"%TCON["า"]	@235
+context "เ"%TCON["\x0E48า"]	@235-35
+context "เ"%TCON["\x0E49า"]	@235-256
+context "เ"%TCON["\x0E4Aา"]	@235-2356
+context "เ"%TCON["\x0E4Bา"]	@235-236
+
+context "เ"%TCON["ะ"]	@124-1
+context "เ"%TCON["\x0E48ะ"]	@124-1-35
+context "เ"%TCON["\x0E49ะ"]	@124-1-256
+context "เ"%TCON["\x0E4Aะ"]	@124-1-2356
+context "เ"%TCON["\x0E4Bะ"]	@124-1-236
+
+pass2 [@124]%TCON1-2@146	?
+pass2 [@124]%PRELET%TCON1-2@146	?
+pass2 [@124]%PRELET%TCON@146	?
+
+
+pass2 [@124]%TCON1-2@12356	?
+pass2 [@124]%PRELET%TCON1-2@12356	?
+pass2 [@124]%PRELET%TCON@12356	?
+
+pass2 [@124]%TCON1-2@12345	?
+pass2 [@124]%EXOR1-2@135-1	?
+pass2 [@124]@135-135-1	?
+pass2 [@124]%TCON@235	?
+pass2 [@24]%TCON@24-1	?
+pass2 [@24]%UPCR%MDCR@24-1	?
+pass2 [@24]%UPCR%DNCR@24-1	?
+
+pass2 [@124]%TCON@124	?
